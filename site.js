@@ -11,11 +11,22 @@ const nextQuestionElement = document.querySelector('#nextQuestion')
 ;(async () => {
 
 	// todo: create your "getNextQuestion" function
+	// const getNextQuestion = async url => {
+		const getNextQuestion = await fetch('https://opentdb.com/api.php?amount=1&category=21&difficulty=easy&type=multiple')
+		const json = await getNextQuestion.json()
+		
+		const { question, correct_answer: correct, incorrect_answers: incorrect } = json.results[0]
+		const answers = shuffle([ ...incorrect, correct ])
+		return { question, answers, correct }
+		console.log(await getNextQuestion())
+	// }
+	
+	
 
 	// todo: create your "renderQuestion" function
 
 	// todo: add the event listener to the "nextQuestion" button
-
+	
 })()
 
 // mimic a click on the "nextQuestion" button to show the first question
